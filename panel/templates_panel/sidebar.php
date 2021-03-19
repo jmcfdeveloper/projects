@@ -54,6 +54,16 @@ $arrayInfo=$_SESSION['usuario'];
       </div>
 
 
+      
+
+     
+      
+
+
+
+
+
+
         
        <!--  <div class="image">
           <img  class="brand-image img-circle elevation-3" src="../imagenes/<?php //echo $usuario['foto'];?>" alt="User Image"  width="100" height="100" >
@@ -135,6 +145,16 @@ $arrayInfo=$_SESSION['usuario'];
                  
               </li>
 
+
+              <a href="#" class="dropdown-item"  data-toggle="modal" data-target="#modal-default">
+            <i class="fas fa-sign-out-alt mr-2"  data-toggle="modal" data-target="#modal-default"></i> Cerrar sesión 
+           
+            <span class="float-right text-muted text-sm"></span>
+          </a>
+          
+
+
+
               <!--    Desactivaré las otras opciones del sidebar por ahora
             
               
@@ -163,6 +183,39 @@ $arrayInfo=$_SESSION['usuario'];
               -->
   
         </ul>
+
+
+        <div class="modal fade" id="modal-default">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Deseas Cerrar sesión?</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Si cierra sesión será redirigido a la pagina de login</p>
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+              <button type="button" class="btn btn-danger" ><a href="modulos/cerrar.php"  style="color: #FFFFFF;">Cerrar sesión</a> </button>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+
+
+
+
+
+
+
+
+
+
       </nav>
       <!-- /.sidebar-menu -->
     </div>

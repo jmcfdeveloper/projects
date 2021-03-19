@@ -211,6 +211,11 @@ switch($accion){
 
     <div class="container">
 
+
+
+
+    
+
     <!-- tabla de trabajadores-->
 <div>
 

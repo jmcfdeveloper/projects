@@ -13,7 +13,7 @@ $arrayInfo=$_SESSION['usuario'];
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Pets life</title>
+  <title>AdminLTE 3 | IDS</title>
   <!-- Tell the browser to be responsive to screen width -->
 
 
@@ -110,6 +110,30 @@ $arrayInfo=$_SESSION['usuario'];
           </i>
           <span class="badge badge-danger navbar-badge">1</span>
         </a>
+
+
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <span class="dropdown-header">15 Notifications</span>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-envelope mr-2"></i> 4 new messages
+            <span class="float-right text-muted text-sm">3 mins</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-users mr-2"></i> 8 friend requests
+            <span class="float-right text-muted text-sm">12 hours</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-file mr-2"></i> 3 new reports
+            <span class="float-right text-muted text-sm">2 days</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+        </div>
+
+        
     <!-- foto que despliega menú -->
 
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
