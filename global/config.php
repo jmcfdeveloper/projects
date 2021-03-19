@@ -3,10 +3,12 @@
 define("KEY","mascotas");
 define("COD","AES-128-ECB");
 
-define("SERVIDOR","localhost");
-define("USUARIO","root");
-define("PASSWORD","");
-define("PASSWORD2","Acdc1004966557");
-define("BD","registro");
+define("SERVIDOR_REGISTRO","localhost");
+define("USUARIO_REGISTRO","root");
+
+define("PASSWORD_REGISTRO","Acdc1004966557");
+define("BDATOS","registro");
 
 ?>
+
+
