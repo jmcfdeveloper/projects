@@ -144,5 +144,6 @@ e.preventDefault();
 <script src="../plugins/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../plugins/dist/js/demo.js"></script>
+</div>
 </body>
 </html>

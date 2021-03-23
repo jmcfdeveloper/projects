@@ -1,6 +1,5 @@
 <?php
 include('global/conexion.php');
-
 session_start();
 
 

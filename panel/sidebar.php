@@ -88,6 +88,21 @@ $arrayInfo=$_SESSION['usuario'];
 
                with font-awesome or any other icon font library -->
               
+               
+               <li>
+                <a href="Vistapanel.php" class="nav-link active" style="background-color: #FF0298">
+                  <i class="nav-icon fas fa-cogs" ></i>
+                  <p>  Panel
+                    <i></i>
+                  </p>
+                
+                </a>
+                 
+              </li>
+               
+               
+
+               
                <li>
                 <a href="Vistatrabajadores.php" class="nav-link active" style="background-color: #0069D9">
                   <i class="nav-icon fas fa-users" ></i>
@@ -102,7 +117,7 @@ $arrayInfo=$_SESSION['usuario'];
              
 
               <li>
-                <a href="" class="nav-link active"  style="background-color: #218838">
+                <a href="Vistabancos" class="nav-link active"  style="background-color: #218838">
                   <i class="nav-icon fas fa-piggy-bank"></i>
                   <p>  Bancos
                     <i ></i>
@@ -113,7 +128,7 @@ $arrayInfo=$_SESSION['usuario'];
               </li>
 
               <li>
-                <a href="" class="nav-link active" style="background-color: #563D7C">
+                <a href="Vistaid" class="nav-link active" style="background-color: #563D7C">
                   <i class="nav-icon fas fa-address-card"></i>
                   <p>  Identificaciones
                     <i ></i>
@@ -124,7 +139,7 @@ $arrayInfo=$_SESSION['usuario'];
               </li>
 
               <li>
-                <a href="" class="nav-link active" style="background-color: #17A2B8">
+                <a href="Vistacuentas" class="nav-link active" style="background-color: #17A2B8">
                   <i class="nav-icon fas fa-users-cog"></i>
                   <p>  Tipos de cuenta
                     <i></i>
@@ -135,7 +150,7 @@ $arrayInfo=$_SESSION['usuario'];
               </li>
 
               <li>
-                <a href="" class="nav-link active" style="background-color:  #C82333">
+                <a href="Vistapagos" class="nav-link active" style="background-color:  #C82333">
                   <i class="nav-icon fas fa-credit-card"></i>
                   <p>  Tipos de pago
                     <i ></i>
