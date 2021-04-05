@@ -44,12 +44,29 @@
                 if ($comprobante != "") {
 
                     if ($comprobante[0]['comprobante'] == "") { ?>
-                        <p>El trabajador no tiene comprobante</p>
+
+
+                            <div class="container">
+                            <div class="row">
+                                <div class="col align-self-start">
+                                
+                                </div>
+                                <div class="col align-self-center">
+                                <img src="../imagenes/icon/pdf2.svg" alt="imagen de pdf" width="250px" height="300px">
+                                 <p style="color:#F91839";><strong>El trabajador no tiene comprobante</strong></p>
+                                
+                                </div>
+                                <div class="col align-self-end">
+                               
+                                </div>
+                            </div>
+                            </div>
+
 
                     <?php } else { ?>
 
                         <div class="embed-responsive embed-responsive-21by9">
-                            <iframe class="embed-responsive-item" src="../docs/<?php echo $comprobante[0]['comprobante']; ?>" allowfullscreen></iframe>
+                            <iframe  class="embed-responsive-item" src="../docs/<?php echo $comprobante[0]['comprobante']; ?>" allowfullscreen></iframe>
                         </div>
 
 

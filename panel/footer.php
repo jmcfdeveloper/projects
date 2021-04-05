@@ -23,14 +23,6 @@
 
 <!-- REQUIRED SCRIPTS -->
 
-<?php if($mostrarModal){?>
-<script>
-
-    $('#registroModal').modal('show');
-    console.log("presionaste un boton");
-</script>
-
-<?php }?>
 
 <script >
   $(function(){
@@ -62,6 +54,7 @@ $(document).ready(function (e) {
 
 <!-- evitar que se reevie el formulario -->
 <script  type="text/javascript" src="js/evitar_reenvio.js"></script>
+<script  type="text/javascript" src="js2/modal-data.js"></script>
 <!-- jQuery -->
 <script src="plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->

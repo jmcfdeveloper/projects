@@ -30,9 +30,12 @@ $txtTipo_cuenta = (isset($_POST['txtTipo_cuenta'])) ? $_POST['txtTipo_cuenta'] :
 $txtNo_cuenta = (isset($_POST['txtNo_cuenta'])) ? $_POST['txtNo_cuenta'] : "";
 $txtCorreo = (isset($_POST['txtCorreo'])) ? $_POST['txtCorreo'] : "";
 $txtComprobante = (isset($_FILES['txtComprobante']["name"])) ? $_FILES['txtComprobante'] : "";
+$txtPrev = (isset($_POST['txtPrev'])) ? $_POST['txtPrev'] : "";
 
 
 $accion = (isset($_POST['accion'])) ? $_POST['accion'] : "";
+$prev = (isset($_POST['prev'])) ? $_POST['prev'] : "";
+
 $modal = (isset($_POST['modal'])) ? $_POST['modal'] : "";
 
 
@@ -42,28 +45,37 @@ $accionModificar = $accionCancelar = "disabled";
 $mostrarModal = false;
 
 
+switch ($prev) {
+  case 'previsualizar':
 
+
+    echo "<script>alert('previsualizar..')</script>";
+    break;
+
+  default:
+    # code...
+    break;
+}
 
 switch ($accion) {
 
   case "btnAgregar":
 
 
-    
+
     $fecha = new DateTime();
     $nombreArchivo = ($txtComprobante != "") ? $fecha->getTimestamp() . "_" . $_FILES["txtComprobante"]["name"] : "default.pdf";
 
     $tmp_pdf = $_FILES['txtComprobante']['tmp_name'];
 
-   
+
 
     if ($tmp_pdf != "") {
       move_uploaded_file($tmp_pdf, "../docs/" . $nombreArchivo);
-    }else{
+    } else {
 
-      $nombreArchivo="default.pdf";
-
-    } 
+      $nombreArchivo = "default.pdf";
+    }
 
     $statement = $conexion->prepare('INSERT INTO trabajadores (id , Identificacion, tipo_id, digito_v, primer_apellido, segundo_apellido, primer_nombre, segundo_nombre, forma_pago , banco , tipo_cuenta , no_cuenta , correo , comprobante) VALUES (null, :Identificacion,:tipo_id, :digito_v, :primer_apellido, :segundo_apellido, :primer_nombre, :segundo_nombre , :forma_pago , :banco , :tipo_cuenta , :no_cuenta , :correo , :comprobante)');
     $statement->execute(array(
@@ -271,121 +283,38 @@ switch ($accion) {
 
                 <td>
 
+                  <div class="row">
 
+                    <div class="col">
 
+                      <form action="" method="post">
+                        <input type="hidden" name="txtPrev" id="txtPrev" value="<?php echo $usuario['id']; ?>" />
 
-                  <div class="bs-example">
-                    <!-- Button HTML (to Trigger Modal) -->
+                        
 
-                    <div class="row">
+                      </form>
 
-                      <!--               <div class="col">
-            
-              <form action="" method="post">
-              <input type="hidden" name="accion"  value="<?php echo $usuario['id']; ?>" />
+                      <form action="" method="post">
 
-              <a href="#myModal" class="btn btn-outline-warning btn-sm" data-toggle="modal" type="submit">
-                <i class="nav-icon fas fa-eye"></i>
-              </a>
+                        
 
-              
-
-              </form>
-
-                <form action="" method="post">
-                <input type="hidden" name="txtIdPrev" value="<?php echo $usuario['id']; ?>">
-                <input class="btn btn-outline-danger btn-sm" heref="#myModal" data-toggle="modal" type="submit" value="previsualizar" name="modal">
-                </form>
-
-
-              
-
-               
-          </div> -->
-
-
-                      <div class="col">
-                        <a href="Vistacomprobante.php?id=<?php echo $usuario['id']; ?>" target="_blank">
-                          <button type="button" class="btn btn-outline-success btn-sm" data-toggle="modal">
-                            <i class="nav-icon fas fa-file"></i>
-                          </button>
-                        </a>
-                      </div>
+                      </form>
 
                     </div>
 
-
-
-
-
-                    <!-- Modal HTML -->
-                    <div id="myModal" class="modal fade bd-example-modal-lg" tabindex="-1">
-                      <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <?php
-
-
-
-                            //print_r($txtID);
-                            // $v1 = $_POST['txtID'];
-                            $sentenciaSQL_comprobante = $pdo->prepare("SELECT * FROM `trabajadores` WHERE  id=" . $usuario['id']);
-                            $sentenciaSQL_comprobante->execute();
-                            $datos_prev = $sentenciaSQL_comprobante->fetchAll(PDO::FETCH_ASSOC);
-                            // print_r($usuario['id']);
-                            $idSeleccionado = (isset($_POST['variable1'])) ? $_POST['variable1'] : "";
-                            echo "idSeleccionado =>" . $idSeleccionado;
-                            print_r($idSeleccionado);
-
-                            ?>
-                            <h5 class="modal-title">Comprobante</h5>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                          </div>
-                          <div class="modal-body">
-
-
-                            <div class="embed-responsive embed-responsive-21by9">
-
-                              <?php
-
-                              //print_r($txtID);
-                              #$sentenciaSQL_comprobante = $pdo->prepare("SELECT * FROM `trabajadores` WHERE  id=" . $txtID);
-                              #$sentenciaSQL_comprobante->execute();
-                              #$comprobante = $sentenciaSQL_comprobante->fetchAll(PDO::FETCH_ASSOC);
-
-                              ?>
-
-                              <embed id="cartoonVideo" class="embed-responsive-item" width="900" height="315" src="../docs/<?php echo $usuario['comprobante']; ?>" allowfullscreen></embed>
-
-
-
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
                   </div>
+
 
 
                 </td>
 
 
                 <td>
-
-
-                  <form action="" method="post">
-                    <input type="hidden" name="txtID" value="<?php echo $usuario['id']; ?>">
-                    <input class="btn btn-outline-danger btn-sm" type="hidden" value="Seleccionar" name="accion">
-                  </form>
-
-                 
-                        <a href="Vistacomprobante.php?id=<?php echo $usuario['id']; ?>" target="_blank">
-                          <button type="button" class="btn btn-outline-success btn-sm" data-toggle="modal">
-                            <i class="nav-icon fas fa-pencil"></i>
-                          </button>
-                        </a>
-                      
-
+                  <a href="Vistacomprobante.php?id=<?php echo $usuario['id']; ?>" target="_blank">
+                    <button type="button" class="btn btn-outline-success btn-sm" data-toggle="modal">
+                      <i class="nav-icon fas fa-cog"></i>
+                    </button>
+                  </a>
                 </td>
 
 
@@ -580,9 +509,9 @@ switch ($accion) {
                     <div class="col-4"> <button value="btnCancelar" type="submit" <?php echo $accionCancelar ?> class="btn btn-outline-danger btn-sm" name="accion">Cancelar</button></div>
                     <div class="col-4"> <button value="btnModificar" type="submit" <?php echo $accionModificar ?> class="btn btn-outline-primary btn-sm" name="accion">Editar</button></div>
                     <div class="col-4"><button value="btnAgregar" type="submit" <?php echo $accionAgregar ?> class="btn btn-outline-success btn-sm" name="accion">Agregar</button></div>
-                   
 
-                    
+
+
 
 
 
@@ -655,65 +584,59 @@ switch ($accion) {
     </div>
 </div>
 
+<!--  modal prev  -->
 
 
 
 
-<!--   modal de practica --->
+
+<div class="bs-example">
+  <!-- Button HTML (to Trigger Modal) -->
 
 
-<div class="modal fade example-modal-lg" id="comprobanteModal" tabindex="-1" role="dialog" aria-labelledby="comprobanteModal" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header" style="background-color: #007BFF">
-        <h5 class="modal-title" id="exampleModalLabel">Usuario</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
 
-        <h1>Comprobante</h1>
+  <!-- Modal HTML -->
+  <div id="myModal" class="modal fade bd-example-modal-lg" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <?php
 
-        <div class="embed-responsive embed-responsive-4by9">
-          <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0"></iframe>
+          ?>
+          <h5 class="modal-title">Comprobante</h5>
+          <input class="form-control" type="text" name="txtPrev" placeholder="" id="txtPrev" value="" require="">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
+        <div class="modal-body">
 
+          <form>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Recipient:</label>
+              <input type="text" class="form-control" id="recipient-name">
+            </div>
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">Message:</label>
+              <textarea class="form-control" id="message-text"></textarea>
+            </div>
+          </form>
+          <div class="embed-responsive embed-responsive-21by9">
 
+            <embed id="cartoonVideo" class="embed-responsive-item" width="900" height="315" src="../docs/<?php echo $usuario['comprobante']; ?>" allowfullscreen></embed>
 
-
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Button trigger modal -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<!-- modal prev -->
 
 
 </section>
 <!-- /.content -->
 </div>
+
 
 
 
@@ -732,5 +655,6 @@ switch ($accion) {
     $('#exampleModal').modal('show');
   </script>
 <?php } ?>
+
 
 <?php include("footer.php"); ?>

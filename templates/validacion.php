@@ -63,11 +63,11 @@ if (isset($_POST['usuario']) && isset($_POST['clave'])) {
      
         switch ($rol) {
             case 1:
-                header('location: panel/Vistatrabajadores.php');
+                header('location: panel/index.php');
                 break;
 
             case 2:
-                header('location: panel/index.php');
+                header('location: panel/user.php');
                 
                 break;
 

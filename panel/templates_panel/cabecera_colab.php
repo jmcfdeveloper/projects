@@ -74,10 +74,10 @@ if(!isset($_SESSION['rol'])){
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-search"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index3.html" class="nav-link">Home</a>
+        <a href="" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
@@ -108,44 +108,9 @@ if(!isset($_SESSION['rol'])){
 
 
     <!-- Notifications Dropdown Menu -->
-    <li class="nav-item dropdown">
+    
 
-    <!--foto que despliega menú-->
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i >
-          <div class="user-panel mt-6 pb-6 mb-6 d-flex">
-        <div class="image">
-        <img class="brand-image img-circle elevation-3" src="../imagenes/<?php echo $arrayInfo['foto'];?>" alt="User Image"  width="40px"  >
-        </div>
-       
-      </div>
-          </i>
-          <span class="badge badge-danger navbar-badge">1</span>
-        </a>
-    <!-- foto que despliega menú -->
-
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-header"><?php echo $arrayInfo['username']."- Tus Opciones"?></span>
-          <div class="dropdown-divider"></div>
-         
-          <a href="#" class="dropdown-item"  data-toggle="modal" data-target="#modal-default">
-            <i class="fas fa-sign-out-alt mr-2"  data-toggle="modal" data-target="#modal-default"></i> Cerrar sesión 
-           
-            <span class="float-right text-muted text-sm"></span>
-          </a>
-          
-
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-user-cog mr-2"   data-toggle="modal" data-target="#modal-default" ></i> configuración 
-            <span class="float-right text-muted text-sm"> </span>
-          </a>
-
-        
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer"> <strong>IDS </strong>Teoreria</a>
-        </div>
-      </li>
+      <button class="btn btn-outline-danger" data-toggle="modal" data-target="#modal-default"> Cerrar sesión</button>
    
 
        
