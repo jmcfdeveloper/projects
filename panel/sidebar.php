@@ -163,7 +163,7 @@ $arrayInfo = $_SESSION['usuario'];
 
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="index.php" class="nav-link active" style="background-color: #1bbc9b">
+              <a href="Vistausuarios.php" class="nav-link active" style="background-color: #1bbc9b">
                 <i class="nav-icon fas fa-users"></i>
                 <p style="color:#FFFFFF";>Usuarios</p> 
               </a>

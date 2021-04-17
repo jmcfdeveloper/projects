@@ -42,17 +42,6 @@ $accionModificar = $accionCancelar = "disabled";
 $mostrarModal = false;
 
 
-switch ($prev) {
-	case 'previsualizar':
-
-
-		echo "<script>alert('previsualizar..')</script>";
-		break;
-
-	default:
-		# code...
-		break;
-}
 
 switch ($accion) {
 
@@ -105,52 +94,117 @@ switch ($accion) {
 
 	case "btnEditar":
 
-		echo "<script>alert('Presionaste Editar..')</script>";
 
-		
-		$accionModificar="";
+		$txtIDE = (isset($_POST['txtIDE'])) ? $_POST['txtIDE'] : "";
+		$txtIdentificacionE = (isset($_POST['txtIdentificacionE'])) ? $_POST['txtIdentificacionE'] : "";
+		$txtTipo_identificacionE = (isset($_POST['txtTipo_identificacionE'])) ? $_POST['txtTipo_identificacionE'] : "";
+		$txtDigito_vE = (isset($_POST['txtDigito_vE'])) ? $_POST['txtDigito_vE'] : "";
+		$txtPrimer_apellidoE = (isset($_POST['txtPrimer_apellidoE'])) ? $_POST['txtPrimer_apellidoE'] : "";
+		$txtSegundo_apellidoE = (isset($_POST['txtSegundo_apellidoE'])) ? $_POST['txtSegundo_apellidoE'] : "";
+		$txtPrimer_nombreE = (isset($_POST['txtPrimer_nombreE'])) ? $_POST['txtPrimer_nombreE'] : "";
+		$txtSegundo_nombreE = (isset($_POST['txtSegundo_nombreE'])) ? $_POST['txtSegundo_nombreE'] : "";
+		$txtForma_pagoE = (isset($_POST['txtForma_pagoE'])) ? $_POST['txtForma_pagoE'] : "";
+		$txtBancoE = (isset($_POST['txtBancoE'])) ? $_POST['txtBancoE'] : "";
+		$txtTipo_cuentaE = (isset($_POST['txtTipo_cuentaE'])) ? $_POST['txtTipo_cuentaE'] : "";
+		$txtNo_cuentaE = (isset($_POST['txtNo_cuentaE'])) ? $_POST['txtNo_cuentaE'] : "";
+		$txtCorreoE = (isset($_POST['txtCorreoE'])) ? $_POST['txtCorreoE'] : "";
+		$txtComprobanteE = (isset($_FILES['txtComprobanteE']["name"])) ? $_FILES['txtComprobanteE'] : "";
 
-		$statement = $conexion->prepare('UPDATE trabajadores SET
-      id=:id,
-      Identificacion=:Identificacion, 
-      tipo_id=:tipo_id, 
-      digito_v=:digito_v,
-      primer_apellido=:primer_apellido, 
-      segundo_apellido=:segundo_apellido,
-      primer_nombre=:primer_nombre,
-      segundo_nombre=:segundo_nombre,
-      forma_pago=:forma_pago,
-      banco=:banco,
-      tipo_cuenta=:tipo_cuenta,
-      no_cuenta=:no_cuenta,
-      correo=:correo WHERE
-      id=:id ');
-		$statement->execute(array(':id' => $txtID, ':Identificacion' => $txtIdentificacion, ':tipo_id' => $txtTipo_identificacion, ':digito_v' => $txtDigito_v, ':primer_apellido' => $txtPrimer_apellido, ':segundo_apellido' => $txtSegundo_apellido, ':primer_nombre' => $txtPrimer_nombre, ':segundo_nombre' => $txtSegundo_nombre, ':forma_pago' => $txtForma_pago, ':banco' => $txtBanco, ':tipo_cuenta' => $txtTipo_cuenta, ':no_cuenta' => $txtNo_cuenta, ':correo' => $txtCorreo));
-
-		/*
-
-    $fecha = new DateTime();
-    $nombreArchivo = ($txtComprobante != "")?$fecha->getTimestamp()."_". $_FILES["txtComprobante"]["name"]:"default.pdf";
-
-    $tmp_pdf = $_FILES['txtComprobante']['tmp_name'];
-
-    if ($tmp_pdf != "") {
-      move_uploaded_file($tmp_pdf, "../docs/" . $nombreArchivo);
-      $statement = $conexion->prepare('UPDATE trabajadores SET
-      comprobante=:comprobante WHERE id=:id');
-  
-          $statement->execute(array(':comprobante' => $nombreArchivo, ':id' => $txtID));
-        
-    }
+		/* 	echo "<script>alert('".$txtIDE."-"
+		.$txtIdentificacionE.""
+		.$txtTipo_identificacionE."-"
+		.$txtDigito_vE."-"
+		.$txtPrimer_apellidoE."-"
+		.$txtSegundo_apellidoE."-"
+		.$txtPrimer_nombreE."-"
+		.$txtSegundo_nombreE ."-"
+		.$txtForma_pagoE ."-"
+		.$txtBancoE ."-"
+		.$txtTipo_cuentaE."-"
+		.$txtNo_cuentaE."-"
+		.$txtCorreoE."')</script>"; */
 
 
-       */
+	//	print_r( $_POST);
+
+		$statementEditar = $conexion->prepare('UPDATE trabajadores SET 
+      Identificacion=:IdentificacionE, 
+      tipo_id=:tipo_idE, 
+      digito_v=:digito_vE,
+      primer_apellido=:primer_apellidoE, 
+      segundo_apellido=:segundo_apellidoE,
+      primer_nombre=:primer_nombreE,
+      segundo_nombre=:segundo_nombreE,
+      forma_pago=:forma_pagoE,
+      banco=:bancoE,
+      tipo_cuenta=:tipo_cuentaE,
+      no_cuenta=:no_cuentaE,
+      correo=:correoE WHERE
+      id=:idE');
+
+
+
+		$statementEditar->execute(array(
+			':IdentificacionE' => $txtIdentificacionE,
+			':tipo_idE' => $txtTipo_identificacionE,
+			':digito_vE' => $txtDigito_vE,
+			':primer_apellidoE' => $txtPrimer_apellidoE,
+			':segundo_apellidoE' => $txtSegundo_apellidoE,
+			':primer_nombreE' => $txtPrimer_nombreE,
+			':segundo_nombreE' => $txtSegundo_nombreE,
+			':forma_pagoE' => $txtForma_pagoE,
+			':bancoE' => $txtBancoE,
+			':tipo_cuentaE' => $txtTipo_cuentaE,
+			':no_cuentaE' => $txtNo_cuentaE,
+			':correoE' => $txtCorreoE,
+			':idE' => $txtIDE
+		));
+
+
+
+		$fecha = new DateTime();
+		$nombreArchivo = ($txtComprobanteE != "")?$fecha->getTimestamp()."_". $_FILES["txtComprobanteE"]["name"]:"default.pdf";
+	
+		$tmp_pdf = $_FILES['txtComprobanteE']['tmp_name'];
+
+	
+
+	
+		if ($tmp_pdf != "") {
+		  move_uploaded_file($tmp_pdf, "../docs/" . $nombreArchivo);
+		  $statement = $conexion->prepare('UPDATE trabajadores SET
+		  comprobante=:comprobante WHERE id=:id');
+	  
+			  $statement->execute(array(':comprobante' => $nombreArchivo, ':id' => $txtID));
+			
+		}
+		   
+
+
+
+/* 
+		$statementEditarComprobante = $conexion->prepare('UPDATE trabajadores SET 
+		comprobante=:comprobanteE WHERE
+		id=:idE');
+
+		$statementEditar->execute(array(
+			':comprobanteE' => $txtComprobanteE,
+			':idE' => $txtIDE
+		));
+ */
+
+
+
+
+/* 		validación de la foto para editarla */
+
+ 
 
 		/**  fin de validación de la foto para editarla*/
-
-		$url = 'index.php';
+		/* 
+	 	$url = 'index.php';
 		echo '<meta http-equiv=refresh content="1; ' . $url . '">';
-
+ */
 
 		break;
 
@@ -165,38 +219,6 @@ switch ($accion) {
 
 	case "Seleccionar":
 
-		//echo " PRESIONASTE SELECCIONAR";
-
-		/*
-    $accionAgregar = "disabled";
-    $accionModificar = $accionCancelar = "";
-    $mostrarModal = true;
-
-
-    $statement = $conexion->prepare("SELECT * FROM trabajadores WHERE id=:id");
-    $statement->execute(array(':id' => $txtID));
-    $usuario = $statement->fetch(PDO::FETCH_LAZY);
-
-    $txtNombre = $usuario['Nombre'];
-
-
-
-    $txtIdentificacion = $usuario['Identificacion'];
-    $txtTipo_identificacion = $usuario['tipo_id'];
-    $txtDigito_v = $usuario['digito_v'];
-    $txtPrimer_apellido = $usuario['primer_apellido'];
-    $txtSegundo_apellido = $usuario['segundo_apellido'];
-    $txtPrimer_nombre = $usuario['primer_nombre'];
-    $txtSegundo_nombre = $usuario['segundo_nombre'];
-    $txtForma_pago = $usuario['forma_pago'];
-    $txtBanco = $usuario['banco'];
-    $txtTipo_cuenta = $usuario['tipo_cuenta'];
-    $txtNo_cuenta = $usuario['no_cuenta'];
-    $txtCorreo = $usuario['correo'];
-    $txtComprobante = $usuario['comprobante'];
-
-
-  */
 
 		break;
 }
@@ -207,7 +229,7 @@ switch ($accion) {
 ?>
 
 <div class="content-wrapper">
-	<section class="principal">
+	<section class="content">
 
 		<div class="row">
 
@@ -239,7 +261,7 @@ switch ($accion) {
 
 									<div class="form-group col-md-6">
 										<label for="">Identificación:</label>
-										<input class="form-control" type="number" required name="txtIdentificacion" placeholder="" id="txtIdentificacion" value="<?php echo $txtIdentificacion; ?>" require="">
+										<input class="form-control" type="number" required name="txtIdentificacion" placeholder="" id="txtIdentificacion" value="<?php echo $txtIdentificacion; ?>" require="" min="11111" max="999999999999">
 
 									</div>
 
@@ -360,7 +382,7 @@ switch ($accion) {
 									<input class="form-control" type="email" name="txtCorreo" placeholder="micorreo@gmail.com" id="txtCorreo" value="<?php echo $txtCorreo; ?>">
 
 									<label for="">Adjuntar comprobante:</label>
-									<input class="form-control" type="file" name="txtComprobante" placeholder="comprobante" id="txtComprobante" value="" required>
+									<input class="form-control" type="file" accept=".pdf" name="txtComprobante" placeholder="comprobante" id="txtComprobante" value="" data-toggle="tooltip" data-placement="top" title="Cargue su Comprobante en Formato PDF" required>
 
 
 
@@ -389,28 +411,6 @@ switch ($accion) {
 						</div>
 					</div>
 
-
-
-
-
-
-
-
-
-
-					<!--  <div class="form-group">
-          <div class="row">
-            <div class="col-4"><label for="">Comprobante:</label> </div>
-
-            <div class="col-8"> <input class="form-control" type="file" accept=".pdf" name="txtComprobante"  id="txtComprobante" value="<?php echo $txtComprobante; ?>"> </div>
-          </div>
-          <div class="row">
-            <iframe src="../docs/<?php #echo $usuario['comprobante']; 
-									?>" frameborder="0"></iframe>
-          </div>
-        </div>  -->
-
-
 					<br>
 					<br>
 
@@ -425,12 +425,12 @@ switch ($accion) {
 
 		<div class="row">
 
-	
+
 
 			<script>
 				$(document).on("click", "#btnModalEditar", function() {
 					//var nombre=$(this).data('nom');
-					var id = $(this).data('identificacion');
+					var id = $(this).data('id');
 					var identificacion = $(this).data('identificacion');
 					var tipo_id = $(this).data('tipo_id');
 					var digito_v = $(this).data('digito_v');
@@ -460,18 +460,11 @@ switch ($accion) {
 					$("#txtCorreoE").val(correo);
 					$("#txtComprobanteE").val(comprobante);
 
-
-					
-					
-
 				})
 			</script>
 
 
-			<!-- Button trigger modal -->
-		<!-- 	<button id="btnModalEditar" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEditar" data-nom="jesus" data-ape="contreras" data-identificacion="1004966557">
-				Editar datos
-			</button> -->
+
 
 			<form action="" method="post" enctype="multipart/form-data">
 
@@ -479,7 +472,7 @@ switch ($accion) {
 
 
 
-				<!-- Modal  para editar-->
+				<!-- Modal para editar-->
 				<div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="modalEditarLabel" aria-hidden="true">
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
@@ -494,19 +487,21 @@ switch ($accion) {
 
 								<div class="form-row">
 
-									<input class="form-control" type="hidden" name="txtIDE" placeholder="" id="txtID" value="<?php echo $txtID; ?>" require="">
+									<input class="form-control" type="hidden" name="txtIDE" placeholder="" id="txtIDE" value="<?php //echo $txtID; ?>" require="">
 
 
 
 									<div class="form-group col-md-6">
 										<label for="">Identificación:</label>
-										<input class="form-control" type="number" required name="txtIdentificacionE" placeholder="" id="txtIdentificacionE" value="<?php echo $txtIdentificacion; ?>" require="">
+
+										<input class="form-control" type="number" required name="txtIdentificacionE" placeholder="" id="txtIdentificacionE" value="<?php //echo $txtIdentificacion; ?>" require="" max="11111" min="99999999999">
+
 
 									</div>
 
 									<div class="form-group col-md-6">
 										<label for="">Tipo de Identificación</label>
-										<select class="form-control" name="txtTipo_identificacion" id="txtTipo_identificacionE">
+										<select class="form-control" name="txtTipo_identificacionE" id="txtTipo_identificacionE">
 											<?php include 'global/conexion_trabajadores_select.php';
 
 
@@ -526,39 +521,39 @@ switch ($accion) {
 
 
 									<label for="">Digito V:</label>
-									<input class="form-control" type="number" name="txtDigito_v" placeholder="" id="txtDigito_vE" value="<?php echo $txtDigito_v; ?>">
+									<input class="form-control" type="number" name="txtDigito_vE" placeholder="" id="txtDigito_vE" value="<?php //echo $txtDigito_v; ?>">
 
 
 
 
 									<div class="form-group col-md-6">
 										<label for="">Primer Apellido:</label>
-										<input class="form-control" type="text" required name="txtPrimer_apellido" placeholder="" id="txtPrimer_apellidoE" value="<?php echo $txtPrimer_apellido; ?>" require="">
+										<input class="form-control" type="text" required name="txtPrimer_apellidoE" placeholder="" id="txtPrimer_apellidoE" value="<?php //echo $txtPrimer_apellido; ?>" require="">
 
 									</div>
 
 									<div class="form-group col-md-6">
 										<label for="">Segundo Apellido:</label>
-										<input class="form-control" type="text" required name="txtSegundo_apellido" placeholder="" id="txtSegundo_apellidoE" value="<?php echo $txtSegundo_apellido; ?>" require="">
+										<input class="form-control" type="text" required name="txtSegundo_apellidoE" placeholder="" id="txtSegundo_apellidoE" value="<?php //echo $txtSegundo_apellido; ?>" require="">
 
 									</div>
 
 									<div class="form-group col-md-6">
 										<label for="">Primer Nombre:</label>
-										<input class="form-control" type="text" name="txtPrimer_nombre" placeholder="" id="txtPrimer_nombreE" required value="<?php echo $txtPrimer_nombre; ?>" require="">
+										<input class="form-control" type="text" name="txtPrimer_nombreE" placeholder="" id="txtPrimer_nombreE" required value="<?php //echo $txtPrimer_nombre; ?>" require="">
 
 
 									</div>
 
 									<div class="form-group col-md-6">
 										<label for="">Segundo Nombre:</label>
-										<input class="form-control" type="text" name="txtSegundo_nombre" placeholder="" id="txtSegundo_nombreE" value="<?php echo $txtSegundo_nombre; ?>">
+										<input class="form-control" type="text" name="txtSegundo_nombreE" placeholder="" id="txtSegundo_nombreE" value="<?php //echo $txtSegundo_nombre; ?>">
 
 									</div>
 
 									<div class="form-group col-md-6">
 										<label for="">Forma de pago</label>
-										<select class="form-control" name="txtForma_pago" id="txtSegundo_nombreE">
+										<select class="form-control" name="txtForma_pagoE" id="txtSegundo_nombreE">
 											<?php include 'global/conexion_trabajadores_select.php';
 
 
@@ -574,7 +569,7 @@ switch ($accion) {
 
 									<div class="form-group col-md-6">
 										<label for="">Banco</label>
-										<select class="form-control" name="txtBanco" id="txtBancoE">
+										<select class="form-control" name="txtBancoE" id="txtBancoE">
 											<?php include 'global/conexion_trabajadores_select.php';
 
 
@@ -591,7 +586,7 @@ switch ($accion) {
 
 									<div class="form-group col-md-6">
 										<label for="">Tipo de Cuenta</label>
-										<select class="form-control" name="txtTipo_cuenta" id="txtTipo_cuentaE">
+										<select class="form-control" name="txtTipo_cuentaE" id="txtTipo_cuentaE">
 											<?php include 'global/conexion_trabajadores_select.php';
 
 
@@ -606,7 +601,7 @@ switch ($accion) {
 									</div>
 									<div class="form-group col-md-6">
 										<label for="">Numero de Cuenta:</label>
-										<input class="form-control" type="number" name="txtNo_cuenta" placeholder="" id="txtNo_cuentaE" required value="<?php echo $txtNo_cuenta; ?>" require="">
+										<input class="form-control" type="number" name="txtNo_cuentaE" placeholder="" id="txtNo_cuentaE" required value="<?php //echo $txtNo_cuenta; ?>" require="">
 									</div>
 
 
@@ -618,13 +613,13 @@ switch ($accion) {
 
 
 									<label for="">Correo:</label>
-									<input class="form-control" type="email" name="txtCorreo" placeholder="micorreo@gmail.com" id="txtCorreoE" value="<?php echo $txtCorreo; ?>">
+									<input class="form-control" type="email" name="txtCorreoE" placeholder="micorreo@gmail.com" id="txtCorreoE" value="<?php //echo $txtCorreo; ?>">
 
 
 
 
 									<label for="">Adjuntar comprobante:</label>
-									<input class="form-control" type="file" name="txtComprobante" placeholder="comprobante" id="txtComprobanteE" value="">
+									<input class="form-control" type="file"  accept=".pdf" name="txtComprobanteE" placeholder="comprobante" id="txtComprobanteE" value="" data-toggle="tooltip" data-placement="top" title="Cargue su comprobante en Formato PDF">
 
 
 
@@ -638,7 +633,7 @@ switch ($accion) {
 									<div class="row">
 
 
-										<div class="col-6"> <button value="btnEditar" type="submit"  class="btn btn-outline-primary btn-sm" name="accion">Editar</button></div>
+										<div class="col-6"> <button value="btnEditar" type="submit" class="btn btn-outline-primary btn-sm" name="accion">Editar</button></div>
 
 
 									</div>
@@ -745,7 +740,15 @@ switch ($accion) {
 
 
 
+
+
+
+
+
 		</div>
+
+
+	
 
 
 
@@ -753,6 +756,11 @@ switch ($accion) {
 
 
 	</section>
+
+
+
+
+
 
 
 	<!-- Modal -->
@@ -781,13 +789,13 @@ switch ($accion) {
 	</div>
 
 
-<!-- 	modal para previsualizar el pdf -->
+	<!-- 	modal para previsualizar el pdf -->
 	<div class="bs-example">
-    <!-- Button HTML (to Trigger Modal) -->
- <!--    <a href="#myModal" class="btn btn-primary btn-lg" data-toggle="modal">Launch Demo Modal</a> -->
-    
-    <!-- Modal HTML -->
-    <!-- <div id="myModal" class="modal fade">
+		<!-- Button HTML (to Trigger Modal) -->
+		<!--    <a href="#myModal" class="btn btn-primary btn-lg" data-toggle="modal">Launch Demo Modal</a> -->
+
+		<!-- Modal HTML -->
+		<!-- <div id="myModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -806,11 +814,11 @@ switch ($accion) {
             </div>
         </div>
     </div> -->
-</div>     
+	</div>
 
 
 
-<!-- 	modal para previsualizar el pdf -->
+	<!-- 	modal para previsualizar el pdf -->
 
 
 

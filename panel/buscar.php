@@ -36,7 +36,7 @@
 
     $salida = "";
 
-    $query = "SELECT * FROM trabajadores WHERE Identificacion NOT LIKE '' ORDER By Identificacion LIMIT 25";
+    $query = "SELECT * FROM trabajadores WHERE Identificacion NOT LIKE '' ORDER By Id DESC";
 
     if (isset($_POST['consulta'])) {
     	$q = $conn->real_escape_string($_POST['consulta']);
@@ -55,13 +55,13 @@
                         <th>TipoID</th>
 						<th>Digito v</th>
                         <th>Apellidos y Nombres</th>
-						<th>Forma pago</th>
+						<th  style='width: 20px'>Forma pago</th>
                         <th>Banco</th>
 						<th>Cuenta</th>
                         <th>No.Cuenta</th>
 						<th>Correo</th>
-						<th>Comprobante</th>
-						<th>Ver</th>
+						<th>PDF</th>
+					
 						<th>Editar</th>
 
     				</tr>
@@ -84,8 +84,7 @@
 						<td>".$fila['correo']."</td>
 						<td>".$link1.$fila['id'].$link2."</td>
 
-						<td>".'<button href="#myModal" id="btnPrev" class="btn btn-outline-warning btn-sm" data-toggle="modal" data-fuente="'.$fila['comprobante'].'"><i class="nav-icon fas fa-eye"></i></button>
-                        '."</td>
+						
 
 						<td>".'<button  name="accion" value="seleccionar" id="btnModalEditar" type="button" class="btn btn-outline-primary  btn-sm" data-toggle="modal" data-target="#modalEditar" 
 						data-id="'.$fila['id'].'" 
