@@ -1,7 +1,11 @@
 <?php
 
-echo "hola soy usuarios desde modulos";
+//echo "hola soy usuarios desde modulos";
 
+
+/* Este documento controla la vista de los Trabajadores
+para usuarios con solo permisos de visualización
+ */
 
 session_start();
 

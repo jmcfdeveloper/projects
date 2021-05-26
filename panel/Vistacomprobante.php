@@ -2,6 +2,8 @@
 <?php include("header.php"); ?>
 <?php include("sidebar.php"); ?>
 
+<?php include("../../"); ?>
+
 <?php
 
 
@@ -23,7 +25,9 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Comprobante</a></li>
-                        <li class="breadcrumb-item active">Starter Page</li>
+                        <li class="breadcrumb-item active">
+                        <img  src="../imagenes/icon/pdf.svg" width="30px" height="30px" >
+                        </li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->

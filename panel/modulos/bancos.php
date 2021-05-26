@@ -23,41 +23,146 @@ $arrayInfo=$_SESSION['usuario'];
 
 $conexion = new PDO('mysql:host=localhost;dbname='.BDATOS, 'root', PASSWORD_REGISTRO);
 
-/*
-$sentenciaSQL=$pdo->prepare("SELECT count(*) totalUsuarios FROM `usuarios`");
 
-$sentenciaSQL2=$pdo->prepare("SELECT count(*) totalMascotas FROM `mascota`");
+$sentenciaBancos=$pdo->prepare("SELECT * FROM `bancos` WHERE 1 ORDER BY banco ASC ");
+$sentenciaBancos->execute();
+$registroBancos=$sentenciaBancos->fetchAll(PDO::FETCH_ASSOC);
 
-$sentenciaSQLRazas=$pdo->prepare("SELECT count(*) totalRazas FROM `raza`");
+
+
+//========================codigo controlador de la vista de BANCOS==============================
+
+$errores="";
+
+
+$conexion = new PDO('mysql:host=localhost;dbname=' . BDATOS, 'root', PASSWORD_REGISTRO);
+
+$txtID = (isset($_POST['txtID'])) ? $_POST['txtID'] : "";
+$txtBanco = (isset($_POST['txtBanco'])) ? $_POST['txtBanco'] : "";
+$txtCodigo = (isset($_POST['txtCodigo'])) ? $_POST['txtCodigo'] : "";
+
+/* 
+variables para los botenes */
+
+$accion = (isset($_POST['accion'])) ? $_POST['accion'] : "";
+$modal = (isset($_POST['modal'])) ? $_POST['modal'] : "";
+
+
+
+$accionAgregar = "";
+$accionModificar = $accionCancelar= $accionEliminar = "disabled";
+$mostrarModal = false;
+
+
+
+switch ($accion) {
+
+  case "btnAgregar":
+
+
+    if (empty($txtBanco) or empty($txtCodigo)) {
+      $errores .= '<hr class="solid"><li><span class="badge badge-warning">Por favor rellena todos los datos</span></li> <hr class="solid">';
+    } else {
+      
+    //	echo " variables=> ".$nombre."-".$apellido."-".$correo;
     
-    $sentenciaSQL->execute();
-    $sentenciaSQL2->execute();
-    $sentenciaSQLRazas->execute();
+    
+      $statement = $conexion->prepare('SELECT * FROM bancos WHERE codigo = :codigo LIMIT 1');
+      $statement->execute(array(':codigo' => $txtCodigo));
+      $resultado = $statement->fetch();
+  
+  
+      if ($resultado != false) {
+        $errores .= '<h2><li><span class="badge badge-danger">Este codigo ya esta siendo utilizado</span></li></h2>';
+      }
+     
+    }
+    if($errores  == ''){
 
- $registro=$sentenciaSQL->fetch(PDO::FETCH_ASSOC);
- $registro2=$sentenciaSQL2->fetch(PDO::FETCH_ASSOC);
- $registroRazas=$sentenciaSQLRazas->fetch(PDO::FETCH_ASSOC);
-
- */
-
-
-?>
-
-<?php
-
-
-$sentenciaSQL3=$pdo->prepare("SELECT * FROM `trabajadores` WHERE 1 ");
-$sentenciaSQL3->execute();
-$registro3=$sentenciaSQL3->fetchAll(PDO::FETCH_ASSOC);
-
-/*
+      
+    $statement = $conexion->prepare('INSERT INTO bancos (id,banco,codigo) VALUES (null, :banco, :codigo)');
+    $statement->execute(array(
+      ':banco' => $txtBanco,
+      ':codigo' => $txtCodigo
+    ));
 
 
-$sentenciaSQLMascotas=$pdo->prepare("SELECT * FROM `mascota` WHERE 1 ");
-$sentenciaSQLMascotas->execute();
-$registroMascotas=$sentenciaSQLMascotas->fetchAll(PDO::FETCH_ASSOC);
+    $url = 'Vistabancos.php';
+    echo '<meta http-equiv=refresh content="1; ' . $url . '">';
 
-*/
+
+
+    }
+
+
+
+
+    break;
+
+  case "btnEditar":
+
+    $statementEditar = $conexion->prepare('UPDATE bancos SET 
+      banco=:Banco, 
+      codigo=:Codigo 
+      WHERE
+      id=:Id');
+
+    $statementEditar->execute(array(
+      ':Banco' => $txtBanco,
+      ':Codigo' => $txtCodigo, 
+      ':Id' => $txtID
+    ));
+    $url = 'Vistabancos.php';
+    echo '<meta http-equiv=refresh content="1; ' . $url . '">'; 
+
+    break;
+
+
+    case "btnEliminar":
+
+      $statement = $conexion->prepare('DELETE FROM bancos WHERE id =:ID');
+      $statement->execute(array(
+        ':ID' => $txtID
+      ));
+  
+  
+    
+     $url = 'Vistabancos.php';
+      echo '<meta http-equiv=refresh content="1; ' . $url . '">'; 
+  
+  
+      break;
+
+
+  case "btnCancelar":
+    $url = 'VIstabancos.php';
+    echo '<meta http-equiv=refresh content="1; ' . $url . '">';
+
+
+    break;
+
+
+  case "Seleccionar":
+    $accionAgregar="disabled";
+    $accionModificar=$accionCancelar=$accionEliminar="";
+    //$mostrarModal=true;
+  
+  
+    $statement =$conexion->prepare("SELECT * FROM bancos WHERE id=:id");
+    $statement->execute(array(':id'=>$txtID));
+    $Banco=$statement->fetch(PDO::FETCH_LAZY);
+  
+    $txtBanco=$Banco['banco'];
+    $txtCodigo=$Banco['codigo'];
+    break;
+}
+
+
+//=======================  ===================================================
+
+
+
+
 
 
 ?>

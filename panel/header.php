@@ -1,7 +1,9 @@
 <?php
 $info = $_SESSION['rol2'];
 $arrayInfo = $_SESSION['usuario'];
+header('Content-Type: text/html; charset=utf-8');
 ?>
+
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -22,7 +24,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-
+ 
+  <link href="dist/css/ionicons.min.css" rel="stylesheet" type="text/css" />
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
@@ -78,7 +81,7 @@ $(document).ready(function(){
           <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="index3.html" class="nav-link">Home</a>
+          <a href="Vistapanel.php" class="nav-link">Panel</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
           <a href="#" class="nav-link">Contact</a>
@@ -116,7 +119,7 @@ $(document).ready(function(){
             <i>
               <div class="user-panel mt-6 pb-6 mb-6 d-flex">
                 <div class="image">
-                  <img class="brand-image img-circle elevation-3" src="../imagenes/<?php echo $arrayInfo['foto'] ?>" alt="User Image" width="30px" height="30px">
+                  <img class="brand-image img-circle elevation-3" src="../imagenes/avatar_neutro.svg" alt="User Image" width="30px" height="30px">
                 </div>
 
               </div>
@@ -137,10 +140,10 @@ $(document).ready(function(){
 
 
             <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
+        <!--     <a href="#" class="dropdown-item">
               <i class="fas fa-user-cog mr-2" data-toggle="modal" data-target="#modal-default"></i> configuración
               <span class="float-right text-muted text-sm"> </span>
-            </a>
+            </a> -->
 
 
             <div class="dropdown-divider"></div>

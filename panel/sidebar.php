@@ -45,7 +45,7 @@ $arrayInfo = $_SESSION['usuario'];
 
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="image">
-            <img src="../imagenes/<?php echo $arrayInfo['foto']; ?>" class="img-circle elevation-2" alt="User Image">
+            <img src="../imagenes/avatar_neutro.svg" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
             <a href="#" class="d-block"><?php echo $arrayInfo['username']; ?></a>
@@ -113,7 +113,7 @@ $arrayInfo = $_SESSION['usuario'];
           </ul>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="Vistabancos" class="nav-link active" style="background-color: #09f9f9">
+              <a href="Vistabancos" class="nav-link active" style="background-color: #a509f9">
                 <i class="nav-icon fas fa-piggy-bank"></i>
                 <p style="color:#FFFFFF";>Bancos</p>
               </a>
@@ -122,7 +122,7 @@ $arrayInfo = $_SESSION['usuario'];
           </ul>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="Vistaid.php" class="nav-link active" style="background-color: #FF8518">
+              <a href="Vistaid.php" class="nav-link active" style="background-color: #C0C0C0">
                 <i class="nav-icon fas fa-address-card"></i>
                 <p style="color:#FFFFFF";>Identificaciones</p>
               </a>
@@ -131,7 +131,7 @@ $arrayInfo = $_SESSION['usuario'];
           </ul>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="Vistacuentas.php" class="nav-link active" style="background-color: #218838">
+              <a href="Vistacuentas.php" class="nav-link active" style="background-color:#1bbc9b">
                 <i class="nav-icon fas fa-users-cog"></i>
                 <p style="color:#FFFFFF";>Tipos de cuentas</p>
               </a>

@@ -25,6 +25,7 @@
 
 
 <script >
+/*
   $(function(){
 
 $('#txtIdentificacionE').keypress(function(e) {
@@ -35,7 +36,7 @@ if(isNaN(this.value + String.fromCharCode(e.charCode)))
 e.preventDefault();
 });
 
-});
+});*/
 </script>
 
 

@@ -3,6 +3,7 @@
 
 
 include_once 'database.php';
+/* include(".."); */
 //include 'templates/cabecera.php';
 $f;
 
@@ -19,7 +20,7 @@ if (isset($_GET['cerrar_sesion'])) {
 if (isset($_SESSION['rol'])) {
     switch ($_SESSION['rol']) {
         case 1:
-            header('location: panel/Vistatrabajadores.php');
+            header('location: panel/index.php');
             break;
 
         case 2:
@@ -31,6 +32,8 @@ if (isset($_SESSION['rol'])) {
 }
 
 if (isset($_POST['usuario']) && isset($_POST['clave'])) {
+
+    
     $usuario = $_POST['usuario'];
     $clave = $_POST['clave'];
 
@@ -46,7 +49,7 @@ if (isset($_POST['usuario']) && isset($_POST['clave'])) {
 
 
     if ($row == true) {
-        $arrayInfo = array('id' => $row[0],'username' => $row[1], 'rol_id' => $row[3],'foto' => $row[4],);
+        $arrayInfo = array('id' => $row[0],'username' => $row[1], 'rol_id' => $row[3]);
         $rol = $row[3]; //fila de la tabla usuarios que representa el campo rol_id// esto puede ir cambiando a medida que se modifique la tabla
         $nombre = $row[1];
         $id = $row[0];

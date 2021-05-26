@@ -1,9 +1,5 @@
 <?php
-
 include('global/conexion.php');
-?>
-<?php
-//include('global/conexion.php');
 
 session_start();
 
@@ -20,32 +16,31 @@ if(!isset($_SESSION['rol'])){
 $id=$_SESSION['id'];
 $arrayInfo=$_SESSION['usuario'];
 
-?>
 
+
+?>
 <?php
 
-
-$conexion = new PDO('mysql:host=localhost;dbname='.BDATOS, 'root', PASSWORD_REGISTRO); 
-$conexion->exec("SET CHARACTER SET utf8");
-
-header('Content-Type: text/html; charset=utf8');
-
-$sentenciaIdentificaciones=$pdo->prepare("SELECT * FROM `identificacion` WHERE 1 ");
-$sentenciaIdentificaciones->execute();
-$registroIdentificion=$sentenciaIdentificaciones->fetchAll(PDO::FETCH_ASSOC);
+$conexion = new PDO('mysql:host=localhost;dbname='.BDATOS, 'root', PASSWORD_REGISTRO);
 
 
-//========================codigo controlador de la vista de identificaciones ==============================
+$sentenciaUsuarios=$pdo->prepare("SELECT * FROM `usuarios` WHERE 1 ORDER BY id ASC ");
+$sentenciaUsuarios->execute();
+$registroUsuarios=$sentenciaUsuarios->fetchAll(PDO::FETCH_ASSOC);
+
+
+
+//========================codigo controlador de la vista de BANCOS==============================
 
 $errores="";
 
 
 $conexion = new PDO('mysql:host=localhost;dbname=' . BDATOS, 'root', PASSWORD_REGISTRO);
 
-$txtID = (isset($_POST['txtID'])) ? $_POST['txtID'] : "";
-$txtTipo = (isset($_POST['txtTipo'])) ? $_POST['txtTipo'] : "";
-$txtCodigo = (isset($_POST['txtCodigo'])) ? $_POST['txtCodigo'] : "";
 
+$txtID = (isset($_POST['txtID'])) ? $_POST['txtID'] : "";
+$txtBanco = (isset($_POST['txtBanco'])) ? $_POST['txtBanco'] : "";
+$txtCodigo = (isset($_POST['txtCodigo'])) ? $_POST['txtCodigo'] : "";
 
 /* 
 variables para los botenes */
@@ -66,14 +61,14 @@ switch ($accion) {
   case "btnAgregar":
 
 
-    if (empty($txtTipo) or empty($txtCodigo)) {
+    if (empty($txtBanco) or empty($txtCodigo)) {
       $errores .= '<hr class="solid"><li><span class="badge badge-warning">Por favor rellena todos los datos</span></li> <hr class="solid">';
     } else {
       
     //	echo " variables=> ".$nombre."-".$apellido."-".$correo;
     
     
-      $statement = $conexion->prepare('SELECT * FROM identificacion WHERE codigo = :codigo LIMIT 1');
+      $statement = $conexion->prepare('SELECT * FROM bancos WHERE codigo = :codigo LIMIT 1');
       $statement->execute(array(':codigo' => $txtCodigo));
       $resultado = $statement->fetch();
   
@@ -86,14 +81,14 @@ switch ($accion) {
     if($errores  == ''){
 
       
-    $statement = $conexion->prepare('INSERT INTO identificacion (id,tipo,codigo) VALUES (null, :tipo, :codigo)');
+    $statement = $conexion->prepare('INSERT INTO bancos (id,banco,codigo) VALUES (null, :banco, :codigo)');
     $statement->execute(array(
-      ':tipo' => $txtTipo,
+      ':banco' => $txtBanco,
       ':codigo' => $txtCodigo
     ));
 
 
-    $url = 'Vistaid.php';
+    $url = 'Vistabancos.php';
     echo '<meta http-equiv=refresh content="1; ' . $url . '">';
 
 
@@ -107,18 +102,18 @@ switch ($accion) {
 
   case "btnEditar":
 
-    $statementEditar = $conexion->prepare('UPDATE identificacion SET 
-      tipo=:Tipo, 
+    $statementEditar = $conexion->prepare('UPDATE bancos SET 
+      banco=:Banco, 
       codigo=:Codigo 
       WHERE
       id=:Id');
 
     $statementEditar->execute(array(
-      ':Tipo' => $txtTipo,
+      ':Banco' => $txtBanco,
       ':Codigo' => $txtCodigo, 
       ':Id' => $txtID
     ));
-    $url = 'Vistaid.php';
+    $url = 'Vistabancos.php';
     echo '<meta http-equiv=refresh content="1; ' . $url . '">'; 
 
     break;
@@ -126,14 +121,14 @@ switch ($accion) {
 
     case "btnEliminar":
 
-      $statement = $conexion->prepare('DELETE FROM identificacion WHERE id =:ID');
+      $statement = $conexion->prepare('DELETE FROM bancos WHERE id =:ID');
       $statement->execute(array(
         ':ID' => $txtID
       ));
   
   
     
-     $url = 'Vistaid.php';
+     $url = 'Vistabancos.php';
       echo '<meta http-equiv=refresh content="1; ' . $url . '">'; 
   
   
@@ -141,7 +136,7 @@ switch ($accion) {
 
 
   case "btnCancelar":
-    $url = 'VIstaid.php';
+    $url = 'VIstabancos.php';
     echo '<meta http-equiv=refresh content="1; ' . $url . '">';
 
 
@@ -154,17 +149,22 @@ switch ($accion) {
     //$mostrarModal=true;
   
   
-    $statement =$conexion->prepare("SELECT * FROM identificacion WHERE id=:id");
+    $statement =$conexion->prepare("SELECT * FROM bancos WHERE id=:id");
     $statement->execute(array(':id'=>$txtID));
-    $Identificacion=$statement->fetch(PDO::FETCH_LAZY);
+    $Banco=$statement->fetch(PDO::FETCH_LAZY);
   
-    $txtTipo=$Identificacion['tipo'];
-    $txtCodigo=$Identificacion['codigo'];
+    $txtBanco=$Banco['banco'];
+    $txtCodigo=$Banco['codigo'];
     break;
 }
 
 
 //=======================  ===================================================
+
+
+
+
+
 
 ?>
 

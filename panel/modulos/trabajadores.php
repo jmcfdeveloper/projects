@@ -21,6 +21,8 @@ $arrayInfo=$_SESSION['usuario'];
 <?php
 
 $conexion = new PDO('mysql:host=localhost;dbname='.BDATOS, 'root', PASSWORD_REGISTRO);
+$conexion->exec("SET CHARACTER SET utf8");
+
 
 /*
 $sentenciaSQL=$pdo->prepare("SELECT count(*) totalUsuarios FROM `usuarios`");

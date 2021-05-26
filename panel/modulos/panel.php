@@ -29,35 +29,37 @@ $sentenciaSQL=$pdo->prepare("SELECT count(*) totalUsuarios FROM `usuarios`");
 $sentenciaSQL2=$pdo->prepare("SELECT count(*) totalMascotas FROM `mascota`");
 
 $sentenciaSQLRazas=$pdo->prepare("SELECT count(*) totalRazas FROM `raza`");
-    
-    $sentenciaSQL->execute();
-    $sentenciaSQL2->execute();
-    $sentenciaSQLRazas->execute();
-
- $registro=$sentenciaSQL->fetch(PDO::FETCH_ASSOC);
- $registro2=$sentenciaSQL2->fetch(PDO::FETCH_ASSOC);
- $registroRazas=$sentenciaSQLRazas->fetch(PDO::FETCH_ASSOC);
-
- */
-
-
-?>
-
-<?php
-
-
-$sentenciaSQL3=$pdo->prepare("SELECT * FROM `trabajadores` WHERE 1 ");
-$sentenciaSQL3->execute();
-$registro3=$sentenciaSQL3->fetchAll(PDO::FETCH_ASSOC);
-
-/*
-
-
-$sentenciaSQLMascotas=$pdo->prepare("SELECT * FROM `mascota` WHERE 1 ");
-$sentenciaSQLMascotas->execute();
-$registroMascotas=$sentenciaSQLMascotas->fetchAll(PDO::FETCH_ASSOC);
 
 */
+
+
+
+$SQLTrabajadores=$pdo->prepare("SELECT count(*) total FROM `trabajadores`");
+$SQLTrabajadores->execute();
+$trabajadores=$SQLTrabajadores->fetch(PDO::FETCH_ASSOC);
+
+$SQLBancos=$pdo->prepare("SELECT count(*) total FROM `bancos`");
+$SQLBancos->execute();
+$bancos=$SQLBancos->fetch(PDO::FETCH_ASSOC);
+
+$SQLId=$pdo->prepare("SELECT count(*) total FROM `identificacion`");
+$SQLId->execute();
+$identificacion=$SQLId->fetch(PDO::FETCH_ASSOC);
+
+$SQLCuentas=$pdo->prepare("SELECT count(*) total FROM `tipo_cuenta`");
+$SQLCuentas->execute();
+$Cuentas=$SQLCuentas->fetch(PDO::FETCH_ASSOC);
+
+$SQLPagos=$pdo->prepare("SELECT count(*) total FROM `tipo_pago`");
+$SQLPagos->execute();
+$Pagos=$SQLPagos->fetch(PDO::FETCH_ASSOC);
+
+$SQLUsuarios=$pdo->prepare("SELECT count(*) total FROM `usuarios`");
+$SQLUsuarios->execute();
+$Usuarios=$SQLUsuarios->fetch(PDO::FETCH_ASSOC);
+
+
+
 
 
 ?>

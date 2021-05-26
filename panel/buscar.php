@@ -46,45 +46,40 @@
     $resultado = $conn->query($query);
 
     if ($resultado->num_rows>0) {
-    	$salida.= "<div class='table-responsive-sm'><table border=1 class='table table-sm'>
-    			<thead>
+    	$salida.= "<table border=1 class='table table-hover table-head-fixed text-nowrap'>
+    	<caption>Lista de Trabajadores</caption>		
+		<thead>
 					
-    				<tr id='titulo' class='bg-danger'>
-    					
-						<th>Identificación</th>
+    				<tr id='titulo'>
+					
+					
+						<th>PDF</th>
+						<th>Editar</th>
+						<th>Id</th>
                         <th>TipoID</th>
 						<th>Digito v</th>
                         <th>Apellidos y Nombres</th>
-						<th  style='width: 20px'>Forma pago</th>
+						<th style='width: 20px'>Forma pago</th>
                         <th>Banco</th>
 						<th>Cuenta</th>
                         <th>No.Cuenta</th>
 						<th>Correo</th>
-						<th>PDF</th>
-					
-						<th>Editar</th>
+						
 
     				</tr>
 
-    			</thead>
+    	</thead>
     			
 
     	<tbody>";
 
     	while ($fila = $resultado->fetch_assoc()) {
     		$salida.="<tr>
-    					<td>".$fila['Identificacion']."</td>
-    					<td>".$fila['tipo_id']."</td>
-    					<td>".$fila['digito_v']."</td>
-    					<td>".$fila['primer_apellido'].' '.$fila['segundo_apellido'].' '.$fila['primer_nombre'].' '.$fila['segundo_nombre']."</td>
-    					<td>".$fila['forma_pago']."</td>
-						<td>".$fila['banco']."</td>
-						<td>".$fila['tipo_cuenta']."</td>
-						<td>".$fila['no_cuenta']."</td>
-						<td>".$fila['correo']."</td>
+
+
 						<td>".$link1.$fila['id'].$link2."</td>
 
-						
+									
 
 						<td>".'<button  name="accion" value="seleccionar" id="btnModalEditar" type="button" class="btn btn-outline-primary  btn-sm" data-toggle="modal" data-target="#modalEditar" 
 						data-id="'.$fila['id'].'" 
@@ -92,7 +87,7 @@
 						data-tipo_id="'.$fila['tipo_id'].'"
 						data-digito_v="'.$fila['digito_v'].'" 
 						data-primer_apellido="'.$fila['primer_apellido'].'"
-					    data-segundo_apellido="'.$fila['segundo_apellido'].'" 
+						data-segundo_apellido="'.$fila['segundo_apellido'].'" 
 						data-primer_nombre="'.$fila['primer_nombre'].'" 
 						data-segundo_nombre="'.$fila['segundo_nombre'].'" 
 						data-forma_pago="'.$fila['forma_pago'].'" 
@@ -104,10 +99,21 @@
 						<i class="nav-icon fas fa-user-edit"></i> 
 						</button>'."</td>
 
+    					<td>".$fila['Identificacion']."</td>
+    					<td>".$fila['tipo_id']."</td>
+    					<td>".$fila['digito_v']."</td>
+    					<td>".$fila['primer_apellido'].' '.$fila['segundo_apellido'].' '.$fila['primer_nombre'].' '.$fila['segundo_nombre']."</td>
+    					<td>".$fila['forma_pago']."</td>
+						<td>".$fila['banco']."</td>
+						<td>".$fila['tipo_cuenta']."</td>
+						<td>".$fila['no_cuenta']."</td>
+						<td>".$fila['correo']."</td>
+						
+
     				</tr>";
 
     	}
-    	$salida.="</tbody></table></div>";
+    	$salida.="</tbody></table>";
     }else{
     	$salida.="<div class='container'>
 	<div class='row'>
@@ -130,7 +136,3 @@
     echo $salida;
 
     $conn->close();
-
-
-
-?>

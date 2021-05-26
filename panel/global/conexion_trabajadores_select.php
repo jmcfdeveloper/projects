@@ -6,7 +6,7 @@ $usuario="root";
 $password="Acdc1004966557";
 $db="registro";
 
-$conexion=mysqli_connect($servidor,$usuario,$password,$db);
+$conexionTrabajadores=mysqli_connect($servidor,$usuario,$password,$db);
 
 
 

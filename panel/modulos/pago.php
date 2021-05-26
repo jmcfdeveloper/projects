@@ -23,41 +23,9 @@ $arrayInfo=$_SESSION['usuario'];
 
 $conexion = new PDO('mysql:host=localhost;dbname='.BDATOS, 'root', PASSWORD_REGISTRO);
 
-/*
-$sentenciaSQL=$pdo->prepare("SELECT count(*) totalUsuarios FROM `usuarios`");
-
-$sentenciaSQL2=$pdo->prepare("SELECT count(*) totalMascotas FROM `mascota`");
-
-$sentenciaSQLRazas=$pdo->prepare("SELECT count(*) totalRazas FROM `raza`");
-    
-    $sentenciaSQL->execute();
-    $sentenciaSQL2->execute();
-    $sentenciaSQLRazas->execute();
-
- $registro=$sentenciaSQL->fetch(PDO::FETCH_ASSOC);
- $registro2=$sentenciaSQL2->fetch(PDO::FETCH_ASSOC);
- $registroRazas=$sentenciaSQLRazas->fetch(PDO::FETCH_ASSOC);
-
- */
-
-
-?>
-
-<?php
-
-
-$sentenciaSQL3=$pdo->prepare("SELECT * FROM `trabajadores` WHERE 1 ");
-$sentenciaSQL3->execute();
-$registro3=$sentenciaSQL3->fetchAll(PDO::FETCH_ASSOC);
-
-/*
-
-
-$sentenciaSQLMascotas=$pdo->prepare("SELECT * FROM `mascota` WHERE 1 ");
-$sentenciaSQLMascotas->execute();
-$registroMascotas=$sentenciaSQLMascotas->fetchAll(PDO::FETCH_ASSOC);
-
-*/
+$sentenciaPagos=$pdo->prepare("SELECT * FROM `tipo_pago` WHERE 1 ");
+$sentenciaPagos->execute();
+$registroPagos=$sentenciaPagos->fetchAll(PDO::FETCH_ASSOC);
 
 
 ?>
